@@ -3,7 +3,7 @@
 
 {{-- Para agregar las secciones que se crearon en la platilla --}}
 @section('tituloPagina','Crear nuevo usuario')
-
+@include('layout.nav')
 @section('contenido')
 <div class="card">
     <h5 class="card-header">Agregar nuevo usuario</h5>

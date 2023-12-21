@@ -12,7 +12,7 @@ class AuthController extends Controller
 	*/
 	public function index()
 	{
-	    // Comprobamos si el usuario ya está logado
+	    // Comprobamos si el usuario ya está existe en la data
 	    if (Auth::check()) {
 
 	        // Si está logado le mostramos la vista de noticias
@@ -20,8 +20,7 @@ class AuthController extends Controller
 	    }
 
 	    // Si no está logado le mostramos la vista con el formulario de login
-	    //return "no se puede ingresar";
-        return view('login');
+	    return view('login');
 	}
 
     /**
@@ -60,6 +59,13 @@ class AuthController extends Controller
 	        return view('noticias');
 	    }
 
-	    return redirect("/")->withSuccess('No tienes acceso, por favor inicia sesión');
+        return "noticias";
+	    //return redirect("/")->withSuccess('No tienes acceso, por favor inicia sesión');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }
