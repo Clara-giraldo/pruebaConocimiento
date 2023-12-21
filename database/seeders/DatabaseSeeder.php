@@ -22,4 +22,5 @@ class DatabaseSeeder extends Seeder
             'password' => 'holamundo1234'
         ]);
     }
+
 }

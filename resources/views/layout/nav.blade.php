@@ -13,7 +13,7 @@
 
           @else
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('noticias') }}">Dashboard</a>
+                <a class="nav-link" href="{{ route('noticias.index') }}">Dashboard</a>
             </li>
             <li class="nav-item">
                 <form style="display: inline" action="/logout" method="POST">

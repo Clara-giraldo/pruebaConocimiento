@@ -2,8 +2,8 @@
 
 @section('tituloPagina', 'Favoritas')
 
+@include('layout.nav')
 @section('contenido')
-    @include('partials.nav')
 
     <h1>Tus Favoritas</h1>
     <br>

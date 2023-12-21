@@ -12,11 +12,11 @@
         <form action=" {{ route('usuarios.store')}}" method="POST">
             @csrf
             <label for="">Nombre</label>
-            <input type="text" name="nombre" class="form-control" placeholder="Ingrese nombre completo" required>
+            <input type="text" name="name" class="form-control" placeholder="Ingrese nombre completo" required>
             <label for="">Correo Electrónico</label>
             <input type="email" name="email" class="form-control" placeholder="Ingrese correo electrónico." required>
             <label for="">Contraseña</label>
-            <input type="password"name="password"  class="form-control" placeholder="Ingrese contraseña" required>
+            <input type="password" name="password" class="form-control" placeholder="Ingrese contraseña" required>
             <br>
             <a href="{{route('home')}}" class="btn btn-info">
                 <span class="fas fa-undo"></span>

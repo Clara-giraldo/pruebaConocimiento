@@ -68,4 +68,16 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+
+    public function preferencias()
+    {
+        Auth::logout();
+        return redirect('/preferencias');
+    }
+
+    public function dashboard()
+    {
+        Auth::logout();
+        return redirect('/dashboard');
+    }
 }

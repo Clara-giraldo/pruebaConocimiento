@@ -2,8 +2,8 @@
 
 @section('tituloPagina', 'Ediar preferencias')
 
+@include('layout.nav')
 @section('contenido')
-    @include('partials.nav')
     <h1>Tus Preferencias</h1>
 
     <form action="{{ route('preferencias.update') }}" method="POST">

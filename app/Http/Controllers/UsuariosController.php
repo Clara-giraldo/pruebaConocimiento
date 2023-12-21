@@ -14,11 +14,11 @@ class UsuariosController extends Controller
         //
         if (Auth::check()) {
 
-	        // Si está logado le mostramos la vista de logados
+	        // Si la validación es verdadera muestra las noticias.
 	        return view('noticias');
 	    }
 
-	    // Si no está logado le mostramos la vista con el formulario de login
+	    // Si la validación es falsa le mostramos la vista con el formulario de login
 	    return view('login');
 
     }
@@ -26,22 +26,21 @@ class UsuariosController extends Controller
 
     public function create()
     {
-        //
+        //Se direcciona al formulario de agregar
         return view('agregar');
     }
 
 
     public function store(Request $request)
     {
-        //
+        //Se obtienen los datos y se guarda en la base de datos
         $usuarios = new User();
-        //echo "<pre>";print_r($request->post());exit;
-        $usuarios->name = $request->post('nombre');
+        $usuarios->name = $request->post('name');
         $usuarios->email = $request->post('email');
-        $usuarios->password = $request->post('password');
+        $usuarios->password = bcrypt($request->post('password'));
         $usuarios->save();
-
-        return redirect()->route('noticias')->with('success', "Agregado con Exito");
+        auth()->login($usuarios);
+        return redirect('dashboard');
     }
 
     public function login(Request $request)
@@ -55,7 +54,7 @@ class UsuariosController extends Controller
 	    // Almacenamos las credenciales de email y contraseña
 	    $credentials = $request->only('email', 'password');
 
-	    // Si el usuario existe lo logamos y lo llevamos a la vista de "noticias" con un mensaje
+	    // Si el usuario existe ingresa y lo llevamos a la vista de "noticias"
 	    if (Auth::attempt($credentials)) {
 	        return redirect()->intended('noticias')
 	            ->withSuccess('Logado Correctamente');
@@ -65,12 +64,10 @@ class UsuariosController extends Controller
 	    return redirect("/")->withSuccess('Los datos introducidos no son correctos');
 	}
 
-	/**
-	* Función que muestra la vista de noticias si el usuario está logado y si no le devuelve al formulario de login
-	* con un mensaje de error
-	*/
+
 	public function noticias()
 	{
+        //si el usuario se loguea correctamente se redirecciona al formulario de noticias
 	    if (Auth::check()) {
 	        return view('noticias');
 	    }
