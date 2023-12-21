@@ -14,11 +14,11 @@ class UsuariosController extends Controller
         //
         if (Auth::check()) {
 
-	        // Si la validación es verdadera muestra las noticias.
+	        // Si la validación es correcta muestra las noticias.
 	        return view('noticias');
 	    }
 
-	    // Si la validación es falsa le mostramos la vista con el formulario de login
+	    // Si la validación es incorrecta le mostramos la vista con el formulario de login
 	    return view('login');
 
     }
@@ -39,6 +39,7 @@ class UsuariosController extends Controller
         $usuarios->email = $request->post('email');
         $usuarios->password = bcrypt($request->post('password'));
         $usuarios->save();
+        // si la creación del corido es correcta se procede a ingresar al Dashboard
         auth()->login($usuarios);
         return redirect('dashboard');
     }
